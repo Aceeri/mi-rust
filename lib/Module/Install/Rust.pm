@@ -135,7 +135,7 @@ sub rust_write {
     my $self = shift;
 
     $self->_rust_write_cargo;
-    $self->_rust_setup_makefile;
+    $self->rust_setup_makefile;
 }
 
 sub _rust_crate_name {
@@ -176,7 +176,7 @@ sub _rust_write_cargo {
     close $f or die $!;
 }
 
-sub _rust_setup_makefile {
+sub rust_setup_makefile {
     my $self = shift;
     my $class = ref $self;
 
