@@ -216,34 +216,13 @@ MAKE
 INST_RUSTDYLIB = \$(INST_ARCHAUTODIR)/\$(DLBASE).\$(DLEXT)
 RUST_TARGETDIR = target/release
 RUST_DYLIB = \$(RUST_TARGETDIR)/$libname.\$(SO)
-CARGO = cargo
-CARGO_OPTS = --release
-RUSTC_OPTS = $rustc_opts
 
+# Dynamically link rust library.
 dynamic :: \$(INST_RUSTDYLIB)
 
-MAKE
-
-    if ($self->{cargo_clean}) {
-        my @opts = map qq{-p "$_"}, @{$self->{cargo_clean}};
-
-        $self->postamble(<<MAKE);
-\$(RUST_DYLIB) ::
-	test \$(FIRST_MAKEFILE) -ot \$@ || \$(CARGO) clean \$(CARGO_OPTS) @opts
-
-MAKE
-    }
-
-    $self->postamble(<<MAKE);
-\$(RUST_DYLIB) ::
-	PERL=\$(FULLPERL) \$(CARGO) rustc \$(CARGO_OPTS) -- \$(RUSTC_OPTS)
-
+# Copy dylibs from rust build directory to where perl will see it.
 \$(INST_RUSTDYLIB): \$(RUST_DYLIB)
 $postproc
-
-clean ::
-	\$(CARGO) clean
-	\$(RM) Cargo.toml Cargo.lock
 MAKE
 }
 
