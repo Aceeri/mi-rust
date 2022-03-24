@@ -1,0 +1,14 @@
+[package]
+description = ""
+name = "platypus"
+version = "1.0.0"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies.perl-sys]
+git = "https://github.com/vickenty/perl-sys"
+
+[dependencies.perl-xs]
+git = "https://github.com/gudtech/perl-xs"
+rev = "ffcd6799dce64c5e42cdda1e50efe99db33453ef"

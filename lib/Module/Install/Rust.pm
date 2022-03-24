@@ -134,7 +134,6 @@ Writes C<Cargo.toml> and sets up Makefile options as needed.
 sub rust_write {
     my $self = shift;
 
-    $self->_rust_write_cargo;
     $self->rust_setup_makefile;
 }
 
