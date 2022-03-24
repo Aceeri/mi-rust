@@ -8,5 +8,5 @@ license "perl";
 configure_requires "Module::Install::Rust" => 0;
 requires "FFI::Platypus";
 
-rust_write;
+rust_setup_makefile;
 WriteAll;
